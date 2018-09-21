@@ -116,6 +116,7 @@ public class XmlUtil {
                 }
             }
     );
+    private static boolean RUN_WITH_SECURITY_MANAGER = (System.getSecurityManager() != null);
 
     public static String getPrefix(String s) {
         int i = s.indexOf(':');
@@ -423,6 +424,7 @@ public class XmlUtil {
     }
 
     private static boolean xmlSecurityDisabled(boolean runtimeDisabled) {
+        if (RUN_WITH_SECURITY_MANAGER) return false;
         return XML_SECURITY_DISABLED || runtimeDisabled;
     }
 
